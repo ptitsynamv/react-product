@@ -1,0 +1,25 @@
+.list-group-item.pincrease .list-group-item-label,
+.list-group-item.increase .list-group-item-input {
+  color: #e09f3e;
+}
+
+.list-group-item.increase .btn-star {
+  color: #aeaeae;
+}
+
+.list-group-item .fa-star {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 16px;
+  color: #ffd700;
+  transition: 0.3s all;
+  transform: translatex (30px);
+  opacity: 0;
+}
+
+.list-group-item.like .fa-star {
+  opacity: 1;
+  transform: translateX(0px);
+}
