@@ -1,11 +1,12 @@
 import './app.css';
-import { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
 import AppFilter from '../app-filter/app-filter';
 import ProductList from '../product-list/product-list';
 import ProductAddForm from '../product-add-form/product-add-form';
 import styled from 'styled-components';
+import BootstrapTest from '../../BootstrapTest';
 
 class WhyAmI extends Component {
   max = 20;
@@ -220,18 +221,83 @@ export const Button = styled.button`
   background: yellow;
 `;
 
+const DynamicGreatings = (props) => {
+  return (
+    <div className={'mb-3 p-3 border border-' + props.color}>
+      {React.Children.map(props.children, (child) => {
+        return React.cloneElement(child, { className: 'shadow border' });
+      })}
+    </div>
+  );
+};
+
+const HelloGreatings = () => {
+  return (
+    <div style={{ width: 600, margin: '0 auto' }}>
+      <DynamicGreatings color={'primary'}>
+        <h2>Header left 1</h2>
+        <h2>Header left 2</h2>
+      </DynamicGreatings>
+    </div>
+  );
+};
+
+const Message = (props) => {
+  return <h2>Counter is {props.counter}</h2>;
+};
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 0,
+    };
+  }
+
+  changeCounter = () => {
+    this.setState(({ counter }) => ({ counter: counter + 1 }));
+  };
+
+  render() {
+    return (
+      <>
+        <button className="button button-primary" onClick={this.changeCounter}>
+          Click me
+        </button>
+        {this.props.render(this.state.counter)}
+      </>
+    );
+  }
+}
+
 class App2 extends Component {
   render() {
     return (
       <Wrapper>
-        <EmpItem active="true">
+        <Counter render={(counter) => <Message counter={counter} />} />
+        <HelloGreatings />
+        <BootstrapTest
+          left={
+            <DynamicGreatings color={'primary'}>
+              <h2>Header left 1</h2>
+              <h2>Header left 2</h2>
+            </DynamicGreatings>
+          }
+          right={
+            <DynamicGreatings color={'primary'}>
+              <h2>Header right 1</h2>
+            </DynamicGreatings>
+          }
+        />
+
+        {/* <EmpItem active="true">
           <Header>My header 2</Header>
           <Button>button</Button>
           <WhyAmI count={10} />
-        </EmpItem>
+        </EmpItem> */}
       </Wrapper>
     );
   }
 }
 
-export default App;
+export default App2;

@@ -19,9 +19,7 @@ class ProductAddForm extends Component {
     this.props.onAdd(this.state);
   };
 
-  static onLog = () => {
-    console.log('onLog');
-  };
+  static onLog = () => {};
 
   render() {
     const { name, sale } = this.state;
