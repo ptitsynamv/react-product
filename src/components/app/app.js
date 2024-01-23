@@ -8,76 +8,7 @@ import ProductAddForm from '../product-add-form/product-add-form';
 import styled from 'styled-components';
 import BootstrapTest from '../../BootstrapTest';
 
-class WhyAmI extends Component {
-  max = 20;
-  min = -20;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      countInfo: props.count,
-    };
-    this.onDec = this.onDec.bind(this);
-  }
-
-  onDec() {
-    this.setState((state) => {
-      let newCount = state.countInfo;
-      if (state.countInfo - 1 >= this.min) {
-        newCount--;
-      }
-      return {
-        countInfo: newCount,
-      };
-    });
-  }
-
-  onInc = () => {
-    this.setState((state) => {
-      let newCount = state.countInfo;
-      if (state.countInfo + 1 <= this.max) {
-        newCount++;
-      }
-      return {
-        countInfo: newCount,
-      };
-    });
-  };
-
-  onRnd() {
-    this.setState({
-      countInfo: Math.floor(
-        Math.random() * (this.max - this.min + 1) + this.min
-      ),
-    });
-  }
-
-  onReset = () => {
-    this.setState({ countInfo: this.props.count });
-  };
-
-  commitInput = (color) => {
-    console.log({ color });
-  };
-
-  render() {
-    return (
-      <Fragment>
-        <>
-          <p>{this.state.countInfo}</p>
-          <button onClick={this.onInc}>inc</button>
-          <button onClick={this.onDec}>dec</button>
-          <button onClick={() => this.onRnd()}>rnd</button>
-          <button onClick={this.onReset}>reset</button>
-          <form action="">
-            <span>Add</span>
-            <input type="text" onChange={() => this.commitInput('my-color')} />
-          </form>
-        </>
-      </Fragment>
-    );
-  }
-}
 
 class App extends Component {
   constructor(props) {

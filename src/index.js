@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Button } from './components/app/app';
 import FormTest from './components/form-test/FormTest';
+import FormTest2 from './components/form-text-2/FormTest2';
 import styled from 'styled-components';
+import Slider from './components/slider/Slider';
+import Calculator from './components/calculator/Calculator';
 
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';

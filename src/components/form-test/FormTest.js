@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useRef, useState, useEffect } from 'react';
 
 class FormTest extends Component {
   constructor(props) {
@@ -75,4 +75,45 @@ class TextInput extends Component {
   }
 }
 
-export default FormTest;
+const FormWithRef = () => {
+  const [text, setText] = useState('');
+  const myRef = useRef(1);
+
+  useEffect(() => {
+    console.log(myRef.current);
+  });
+
+  return (
+    <div
+      style={{
+        margin: '20px auto',
+        width: '300px',
+        border: '1px solid black',
+      }}
+    >
+      <form>
+        <div className="form-group">
+          <label htmlFor="exampleFormControlInput1">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleFormControlInput1"
+            placeholder="name@example.com"
+            onChange={(e) => setText(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
+          <textarea
+            className="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            onClick={() => myRef.current++}
+          />
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default FormWithRef;
