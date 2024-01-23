@@ -7,7 +7,7 @@ import FormTest2 from './components/form-text-2/FormTest2';
 import styled from 'styled-components';
 import Slider from './components/slider/Slider';
 import Calculator from './components/calculator/Calculator';
-
+import FilteredPosts from './components/filtered-posts/FilteredPosts';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -23,6 +23,6 @@ root.render(
     <BigButton as="a">my-text-a</BigButton>
 
     <App /> */}
-    <FormTest />
+    <FilteredPosts />
   </React.StrictMode>
 );

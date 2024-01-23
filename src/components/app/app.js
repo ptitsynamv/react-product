@@ -8,8 +8,6 @@ import ProductAddForm from '../product-add-form/product-add-form';
 import styled from 'styled-components';
 import BootstrapTest from '../../BootstrapTest';
 
-
-
 class App extends Component {
   constructor(props) {
     super(props);

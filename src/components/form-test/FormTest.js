@@ -75,13 +75,26 @@ class TextInput extends Component {
   }
 }
 
-const FormWithRef = () => {
-  const [text, setText] = useState('');
-  const myRef = useRef(1);
+// custom hook
+function useInputWithValidate(initialValue) {
+  const [value, setValue] = useState(initialValue);
 
-  useEffect(() => {
-    console.log(myRef.current);
-  });
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const validateInput = () => {
+    return value.search(/\d/) >= 0;
+  };
+
+  return { value, onChange, validateInput };
+}
+
+const FormWithRef = () => {
+  const input = useInputWithValidate('');
+  const textArea = useInputWithValidate('');
+
+  const color = input.validateInput() ? 'text-danger' : null;
 
   return (
     <div
@@ -93,13 +106,22 @@ const FormWithRef = () => {
     >
       <form>
         <div className="form-group">
-          <label htmlFor="exampleFormControlInput1">Email address</label>
+          <input
+            type="text"
+            className="form-control"
+            value={`${input.value} / ${textArea.value}`}
+            readOnly
+          />
+          <label className="mt-3" htmlFor="exampleFormControlInput1">
+            Email address
+          </label>
           <input
             type="email"
-            className="form-control"
+            value={input.value}
+            className={`form-control ${color}`}
             id="exampleFormControlInput1"
             placeholder="name@example.com"
-            onChange={(e) => setText(e.target.value)}
+            onChange={input.onChange}
           />
         </div>
         <div className="form-group">
@@ -108,7 +130,8 @@ const FormWithRef = () => {
             className="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
-            onClick={() => myRef.current++}
+            value={textArea.value}
+            onChange={textArea.onChange}
           />
         </div>
       </form>

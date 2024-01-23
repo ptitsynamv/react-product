@@ -83,10 +83,11 @@ class Calculator2 extends Component {
   }
 }
 
-const Calculator = (props) => {
+const useCalculatorSimple = (count) => {
   const max = 20;
   const min = -20;
-  const [countInfo, setCountInfo] = useState(props.count | 0);
+
+  const [countInfo, setCountInfo] = useState(count | 0);
 
   function onInc() {
     if (countInfo + 1 > max) {
@@ -103,37 +104,71 @@ const Calculator = (props) => {
   }
 
   function onRnd() {
-    setCountInfo(
-      Math.floor(Math.random() * (max - min + 1) + min)
-    );
+    setCountInfo(Math.floor(Math.random() * (max - min + 1) + min));
   }
 
   function onReset() {
-    setCountInfo(props.count | 0);
+    setCountInfo(count | 0);
   }
 
-  function commitInput() {}
+  return { countInfo, onInc, onDec, onRnd, onReset };
+};
+
+const Calculator = (props) => {
+  const calc = useCalculatorSimple(props.count);
 
   return (
     <div
+      className="p-2 m-auto border"
       style={{
-        width: '500px',
-        margin: 'auto',
-        border: '1px solid green',
-        padding: '20px',
+        width: '300px',
       }}
     >
-      <p>count info: {countInfo}</p>
-      <button onClick={onInc}>inc</button>
-      <button onClick={onDec}>dec</button>
-      <button onClick={onRnd}>rnd</button>
-      <button onClick={onReset}>reset</button>
-      <form action="">
-        <span>Add</span>
-        <input type="text" onChange={() => commitInput('my-color')} />
-      </form>
+      <p>count info: {calc.countInfo}</p>
+      <button className="btn btn-outline-primary m-2" onClick={calc.onInc}>
+        inc
+      </button>
+      <button className="btn btn-outline-primary m-2" onClick={calc.onDec}>
+        dec
+      </button>
+      <button className="btn btn-outline-primary m-2" onClick={calc.onRnd}>
+        rnd
+      </button>
+      <button className="btn btn-outline-primary m-2" onClick={calc.onReset}>
+        reset
+      </button>
     </div>
   );
 };
 
-export default Calculator;
+const CalculatorSmall = (props) => {
+  const calc = useCalculatorSimple(props.count);
+
+  return (
+    <div
+      className="p-2 m-auto border"
+      style={{
+        width: '300px',
+      }}
+    >
+      <p>count info: {calc.countInfo}</p>
+      <button className="btn btn-outline-primary m-2" onClick={calc.onRnd}>
+        rnd
+      </button>
+      <button className="btn btn-outline-primary m-2" onClick={calc.onReset}>
+        reset{' '}
+      </button>
+    </div>
+  );
+};
+
+const CalculatorWrapper = () => {
+  return (
+    <div className="d-flex flex-column" style={{ gap: 20 }}>
+      <Calculator />
+      <CalculatorSmall />
+    </div>
+  );
+};
+
+export default CalculatorWrapper;
