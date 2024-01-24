@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import Slider from './components/slider/Slider';
 import Calculator from './components/calculator/Calculator';
 import FilteredPosts from './components/filtered-posts/FilteredPosts';
+import FormMemoTest from './components/memo-text/FormMemoTest';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -23,6 +24,6 @@ root.render(
     <BigButton as="a">my-text-a</BigButton>
 
     <App /> */}
-    <FilteredPosts />
+    <FormMemoTest />
   </React.StrictMode>
 );
