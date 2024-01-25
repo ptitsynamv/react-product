@@ -13,6 +13,7 @@ import FormContextTest from './components/form-context-test/FormContextTest';
 import SliderReducerTest from './components/slider-reducer-test/SliderReducerTest';
 import HigherOrderComponents from './components/higher-order-components/HigherOrderComponents';
 import ModalTestWrapper from './components/modal-test/ModalTest';
+import FormikFormTestWrapper from './components/formik-form-test/FormikFormTest';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,6 +29,6 @@ root.render(
     <BigButton as="a">my-text-a</BigButton>
 
     <App /> */}
-    <ModalTestWrapper />
+    <FormikFormTestWrapper />
   </React.StrictMode>
 );
