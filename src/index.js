@@ -16,6 +16,7 @@ import ModalTestWrapper from './components/modal-test/ModalTest';
 import FormikFormTestWrapper from './components/formik-form-test/FormikFormTest';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReduxCounterTest from './components/redux-counter-test/redux-counter-test';
 
 const BigButton = styled(Button)`
   margin: 0 auto;
@@ -29,6 +30,6 @@ root.render(
     <BigButton as="a">my-text-a</BigButton>
 
     <App /> */}
-    <FormikFormTestWrapper />
+    <ReduxCounterTest />
   </React.StrictMode>
 );
